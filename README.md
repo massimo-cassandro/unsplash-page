@@ -1,5 +1,7 @@
 # Unsplash pages
 
+> NEED-FIX: react version throw an error with css modules on symfony encore
+
 Single page with random photo from [Unsplash](https://unsplash.com/) to display some messages (useful for error pages).
 
 Available in both React and Vanilla JS.
