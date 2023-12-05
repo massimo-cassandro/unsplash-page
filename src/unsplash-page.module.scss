@@ -1,0 +1,306 @@
+$desktop-brk-min: 768px;
+@mixin media-desktop-up() {
+  @media screen and (min-width: $desktop-brk-min) {
+    @content;
+  }
+}
+
+// repeated defaults
+$default-text-color: #fff;
+$default-link-color: #fc0;
+$default-link-hover-color: var(--up-link-color, $default-link-color);
+$default-icon-fill-color: #333;
+$default-icon-box-bg: var(--up-link-color, $default-link-color);
+
+
+html, body {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+/* stylelint-disable declaration-no-important */
+.bodyNoScroll {
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+
+  * {
+    box-sizing: border-box !important;
+  }
+}
+/* stylelint-enable declaration-no-important */
+
+.container {
+  position: relative;
+  width: 100dvw;
+  height: 100dvh;
+
+
+  font-family: var(--up-font-family, sans-serif);
+  font-size: var(--up-font-size, 1rem);
+  font-variation-settings: var(--up-font-variation-settings, unset);
+  font-weight: var(--up-font-weight, 400);
+  line-height: var(--up-line-height, 1.4);
+
+  background-color: #333;
+
+  a:is(:link, :visited) {
+    color: var(--up-link-color, $default-link-color);
+    text-decoration: var(--up-link-decoration, none);
+
+    @media (hover: hover) {
+      &:hover {
+        color: var(--up-link-hover-color, $default-link-hover-color);
+        text-decoration: var(--up-link-hover-decoration, underline);
+      }
+    }
+  }
+}
+
+.canvas {
+  position: absolute;
+  // z-index: -1;
+  width: 100%;
+  height: 100%;
+}
+
+.unsplashPhoto { // img
+  position: relative;
+  z-index: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+
+  // font-size: 1.2rem;
+  // color: #999;
+  // text-align: center;
+
+}
+
+.unsplashPhoto, .credits {
+  opacity: 0;
+  transition: opacity .3s linear;
+
+  .show & {
+    opacity: 1;
+  }
+}
+
+.messageBox {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 3rem;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  overflow: hidden;
+}
+
+.message, .credits {
+  color: var(--up-text-color, $default-text-color);
+  background-color: var(--up-bg-color, hsl(0deg 0% 0% / .7));
+}
+
+.message {
+  position: relative;
+  width: max-content;
+  max-width: 90dvw;
+  padding: 1rem 2rem;
+  text-align: center;
+  transition: translate .3s ease-in-out;
+
+  h1 {
+    margin: 0;
+    font-size: var(--up-h1-font-size, 2rem);
+    font-variation-settings: var(--up-h1-font-variation-settings, unset);
+    font-weight: var(--up-h1-font-weight, 700);
+    line-height: var(--up-h1-line-height, 1.25);
+    color: var(--up-h1-color, var(--up-text-color, $default-text-color));
+  }
+
+  p {
+    margin: .5rem 0 0;
+  }
+
+  @include media-desktop-up() {
+    max-width: 60dvw;
+  } // end desktop
+
+  .backLink {
+    margin-top: 1rem;
+  }
+
+  $arrow-size: 2rem;
+  $arrow-position: -$arrow-size * .25;
+  .arrowWrapper {
+
+    position: absolute;
+    bottom: $arrow-position;
+    left: $arrow-position;
+    width: $arrow-size;
+    height: $arrow-size;
+    color: var(--up-icon-fill-color, $default-icon-fill-color);
+    cursor: w-resize;
+    background-color: var(--up-icon-box-bg, $default-icon-box-bg);
+    border-radius: 50%;
+    // transition: all .2s ease-in-out;
+    /* duration | easing-function | delay | iteration-count | direction | name */
+    animation: .2s ease-in 2s 2 reverse icon-shaking;
+
+    @media (hover: hover) {
+      &:hover {
+        background-color: var(--up-icon-hover-box-bg, #fff);
+      }
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &.hidden {
+
+    translate: calc(-1 * (50dvw + 50% - 2rem));
+
+    .arrowWrapper {
+      right: $arrow-position;
+      left: auto;
+      cursor: e-resize;
+      rotate: .5turn;
+    }
+  }
+
+}
+
+@keyframes icon-shaking {
+  0% { transform: translateX(0); }
+  40% { transform: translateX(20px); }
+  80% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+
+.credits {
+  display: flex;
+  flex-flow: column wrap;
+  gap: .5rem;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: .2rem 1rem;
+  font-size: var(--up-credits-font-size, .8em);
+  font-weight: var(--up-credits-font-weight, 400);
+  line-height: var(--up-credits-line-height, 1.3);
+
+
+  @include media-desktop-up() {
+    flex-direction: row;
+    justify-content: space-between;
+
+  } // end desktop
+}
+
+
+// link a scomparsa alla pagina della foto
+.unsplashPhotoLink {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    aspect-ratio: 1;
+    padding: 4px;
+    color: #fff;
+    background-color: rgb(0 0 0 / .5);
+    border-radius: 50%;
+
+    &:active {
+      color: var(--up-icon-fill-color, $default-icon-fill-color);
+      background-color: var(--up-icon-box-bg, $default-icon-box-bg);
+
+      img {
+        filter: none;
+        opacity: 1;
+      }
+    }
+  }
+  img {
+    display: block;
+    filter: brightness(0) invert(1);
+    opacity: .6;
+  }
+
+  @media (hover: hover) {
+
+    .show &:hover {
+      img {
+        opacity: 1;
+      }
+    }
+
+    &.showOnHover {
+      opacity: 0;
+      .show &:hover {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+
+/* https://wweb.dev/resources/loader-generator/ */
+.loaderWrapper {
+  --loader-color: var(--up-loader-color, hsl(0deg 0% 100% / .6));
+
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  // z-index: -1;
+  transform: translate(-50%, -50%);
+}
+.loader {
+  width: 80px;
+  aspect-ratio: 1;
+  background: conic-gradient(#0000, var(--loader-color)) content-box;
+  border-radius: 50%;
+  /* stylelint-disable-next-line property-no-vendor-prefix */
+  -webkit-mask:
+    repeating-conic-gradient(
+      #0000 0deg,
+      #000 1deg calc(360deg / 10 - 10deg - 1deg),
+      #0000 calc(360deg / 10 - 10deg) calc(360deg / 10)
+    ),
+    radial-gradient(
+      farthest-side,
+      #0000 calc(98% - 10px),
+      #000 calc(100% - 10px)
+    );
+  mask:
+    repeating-conic-gradient(
+      #0000 0deg,
+      #000 1deg calc(360deg / 10 - 10deg - 1deg),
+      #0000 calc(360deg / 10 - 10deg) calc(360deg / 10)
+    ),
+    radial-gradient(
+      farthest-side,
+      #0000 calc(98% - 10px),
+      #000 calc(100% - 10px)
+    );
+
+  /* stylelint-disable-next-line property-no-vendor-prefix */
+  -webkit-mask-composite: destination-in;
+  mask-composite: intersect;
+  animation: spin 1000ms infinite steps(10);
+}
+@keyframes spin { to { transform: rotate(1turn); } }
+
