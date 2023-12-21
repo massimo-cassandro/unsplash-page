@@ -1,1 +1,1 @@
-export { UnsplashPage } from '../src/UnsplashPage';
+export { default as UnsplashPage } from '../src/UnsplashPage';
