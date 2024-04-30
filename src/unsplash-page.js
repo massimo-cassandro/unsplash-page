@@ -38,9 +38,9 @@ export function unsplashPageJS(settings) {
 
     const cssClass = classname => settings.cssModules? settings.cssModulesObj[classname] : classname;
 
-    settings.targetElement.innerHTML = `<div class="${cssClass('container') + (settings.className? ` ${settings.className}` : '')}"></div>`;
-    const container = settings.targetElement.querySelector('.' + cssClass('container'));
-    container.innerHTML = `<div class="${cssClass('loaderWrapper')}"><div class="${cssClass('loader')}"></div></div>`;
+    settings.targetElement.innerHTML = `<div class="${cssClass('upContainer') + (settings.className? ` ${settings.className}` : '')}"></div>`;
+    const container = settings.targetElement.querySelector('.' + cssClass('upContainer'));
+    container.innerHTML = `<div class="${cssClass('upLoaderWrapper')}"><div class="${cssClass('upLoader')}"></div></div>`;
 
     fetchUnsplashData({unsplash_data_url: settings.unsplashDataUrl})
       .then(photo => {
@@ -48,7 +48,7 @@ export function unsplashPageJS(settings) {
         const pixels = decode(photo.blur_hash, container.offsetWidth, container.offsetHeight);
 
         const canvas = document.createElement('canvas');
-        canvas.className = cssClass('canvas');
+        canvas.className = cssClass('upCanvas');
         canvas.width = container.offsetWidth;
         canvas.height = container.offsetHeight;
         const ctx = canvas.getContext('2d');
@@ -106,21 +106,21 @@ export function unsplashPageJS(settings) {
 
         const img = container.querySelector('.' + cssClass('unsplashPhoto'));
         img.onload = () => {
-          container.querySelector('.' + cssClass('loaderWrapper')).remove();
+          container.querySelector('.' + cssClass('upLoaderWrapper')).remove();
           container.classList.add(cssClass('show'));
 
-          container.insertAdjacentHTML('beforeend', `<div class="${cssClass('messageBox')}">
-            <div class="${cssClass('message')}">
+          container.insertAdjacentHTML('beforeend', `<div class="${cssClass('upMessageBox')}">
+            <div class="${cssClass('upMessage')}">
               <h1>${settings.title}</h1>
               ${settings.text? `<p>${settings.text}</p>` : ''}
-              ${settings.backLink ? `<p class="${cssClass('backLink')}">${settings.backLink}</p>` : ''}
+              ${settings.backLink ? `<p class="${cssClass('upBackLink')}">${settings.backLink}</p>` : ''}
 
-              <div class="${cssClass('arrowWrapper')}" role="button">
+              <div class="${cssClass('upArrowWrapper')}" role="button">
                 <img src="${arrowIcon}" alt="Icona freccia">
               </div>
             </div>
 
-            <div class="${cssClass('credits')}">
+            <div class="${cssClass('upCredits')}">
               <em>${photo.image_description}</em>
               <span>Photo
                 <a href="${`${photo.author_profile}?utmSource=${settings.utmSource}&utm_medium=referral`}">
@@ -129,14 +129,14 @@ export function unsplashPageJS(settings) {
               </span>
             </div>
           </div>
-          <div class="${cssClass('unsplashPhotoLink')}${settings.hidePhotoLink? ` ${cssClass('showOnHover')}` : ''}">
+          <div class="${cssClass('unsplashPhotoLink')}${settings.hidePhotoLink? ` ${cssClass('upShowOnHover')}` : ''}">
             <a href="${`${photo.unsplash_url}?utm_source=${settings.utmSource}&utm_medium=referral`}" target="_blank" rel="noopener noreferrer">
               <img src="${imageIcon}" alt="Icona immagine" />
             </a>
           </div>`);
 
-          container.querySelector('.' + cssClass('arrowWrapper')).addEventListener('click', e => {
-            e.target.closest(`.${cssClass('message')}`).classList.toggle(cssClass('hidden'));
+          container.querySelector('.' + cssClass('upArrowWrapper')).addEventListener('click', e => {
+            e.target.closest(`.${cssClass('upMessage')}`).classList.toggle(cssClass('hidden'));
           }, false);
 
         }; // end img.onload
