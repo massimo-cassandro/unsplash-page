@@ -26,12 +26,12 @@
   icons:
   --up-icon-box-bg: var(--up-link-color);
   --up-icon-fill-color: #333;
-  --up-icon-hover-box-bg
+  --up-icon-hover-box-bg: #fff;
 
   links:
-  --up-link-color, #fc0;
+  --up-link-color: #fc0;
   --up-link-decoration: none;
-  --up-link-hover-color, #fc0;
+  --up-link-hover-color: #fc0;
   --up-link-hover-decoration: underline;
 
   loader:
@@ -46,9 +46,10 @@ html, body {
   padding: 0;
   margin: 0;
 
-  * {
-    box-sizing: border-box !important;
-  }
+}
+
+*, *::before, *::after {
+  box-sizing: border-box !important;
 }
 
 .bodyNoScroll {
