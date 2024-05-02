@@ -15,7 +15,6 @@ export function unsplashPageJS(settings) {
       text             : null,
       backLink         : null,
       hidePhotoLink    : true,
-      cssModules       : false,
       cssModulesObj    : null
     },
     required_settings = ['targetElement', 'unsplashDataUrl', 'utmSource', 'title'];
@@ -32,11 +31,8 @@ export function unsplashPageJS(settings) {
       throw new Error( `I parametri ${required_settings.map(i => `\`${i}\``).join(',')} sono obbligatori` );
     }
 
-    if(settings.cssModules && !settings.cssModulesObj) {
-      throw new Error( 'Il parametro `cssModulesObj` è obbligatorio se `cssModules = true`' );
-    }
 
-    const cssClass = classname => settings.cssModules? settings.cssModulesObj[classname] : classname;
+    const cssClass = classname => settings.cssModulesObj? settings.cssModulesObj[classname] : classname;
 
     settings.targetElement.innerHTML = `<div class="${cssClass('upContainer') + (settings.className? ` ${settings.className}` : '')}"></div>`;
     const container = settings.targetElement.querySelector('.' + cssClass('upContainer'));

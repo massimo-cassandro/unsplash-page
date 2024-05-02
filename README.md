@@ -43,7 +43,7 @@ php -S localhost:8000
 
 and then open `http://localhost:8000/demo/`.
 
-## Using the Vanilla JS version
+## Use
 
 Demo: <https://massimo-cassandro.github.io/unsplash-page/demo/vanilla-js/index.html>
 
@@ -77,9 +77,9 @@ where:
 * `cssModulesObj`: If you are using CSS Modules, assign to these parameter the imported styles object (see below).
 
 ### CSS
-Vanilla JS does not include any CSS, to maintain maximum flexibility of use.
+The JS file does not include any CSS, to maintain maximum flexibility of use.
 
-Then you can plug your CSS into the html (like I did in the Vanilla JS demo) or manage it with Rollup, Webpack etc.
+Then you can plug your CSS into the html (like I did in the demo) or manage it with Rollup, Webpack etc.
 
 If you are using CSS modules, you need to share the parsed CSS object with the script so that the processed class names can be used:
 
@@ -166,7 +166,12 @@ unsplashPageJS({
 });
 ```
 
+## Use with React
+The previous version of UP contained a React version of the script, but, to simplify maintenance and achieve maximum flexibility of use, I now prefer to use a React wrapper of the Vanilla JS script: you can find a template of the file in the `react` folder.
 
+The sample uses [React Router](https://reactrouter.com) to display error messages based on server results.
+
+In the same folder, you can find the previous, unmantained, React version,
 
 ## Images breakpoints & sizes
 

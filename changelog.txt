@@ -5,3 +5,4 @@
 2024-04-30T14:29:17.350Z |            2.0.0 | Dropped react version and sass
 2024-04-30T14:32:07.324Z |            2.0.1 | Fix
 2024-04-30T16:23:44.905Z |            2.0.2 | Fix
+2024-05-02T07:45:22.906Z |            2.0.3 | React example added

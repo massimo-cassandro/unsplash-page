@@ -11,6 +11,5 @@ unsplashPageJS({
   text             : 'This is the message <strong>text</strong>',
   backLink         : '<a href="https://github.com/massimo-cassandro/unsplash-page">Back to repository home</a>',
   hidePhotoLink    : true,
-  cssModules       : false,
   cssModulesObj    : null
 });
