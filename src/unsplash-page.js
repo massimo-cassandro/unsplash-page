@@ -102,7 +102,7 @@ export function unsplashPageJS(settings) {
 
         const img = container.querySelector('.' + cssClass('unsplashPhoto'));
         img.onload = () => {
-          container.querySelector('.' + cssClass('upLoaderWrapper')).remove();
+          container.querySelector('.' + cssClass('upLoaderWrapper'))?.remove();
           container.classList.add(cssClass('show'));
 
           container.insertAdjacentHTML('beforeend', `<div class="${cssClass('upMessageBox')}">
