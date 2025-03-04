@@ -4,6 +4,7 @@ import { useRouteError, Link } from 'react-router-dom';
 
 import { unsplashPageJS } from '@massimo-cassandro/unsplash-page';
 import './custom-css-props-template.css';
+import '@massimo-cassandro/unsplash-page/src/unsplash-page-body-reset.css';
 import styles from '@massimo-cassandro/unsplash-page/src/unsplash-page.module.css';
 
 

@@ -7,3 +7,4 @@
 2024-04-30T16:23:44.905Z |            2.0.2 | Fix
 2024-05-02T07:45:22.906Z |            2.0.3 | React example added
 2025-01-16T09:15:26.725Z |            2.0.4 | Fix
+2025-03-04T11:46:44.781Z |            2.1.0 | Separazione regole css per reset body tag
