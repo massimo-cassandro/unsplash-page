@@ -9,3 +9,4 @@
 2025-01-16T09:15:26.725Z |            2.0.4 | Fix
 2025-03-04T11:46:44.781Z |            2.1.0 | Separazione regole css per reset body tag
 2025-05-04T13:35:24.407Z |            2.1.1 | Depend. upd
+2025-08-22T16:36:56.249Z |            2.1.2 | Fix
